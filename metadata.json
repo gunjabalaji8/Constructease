@@ -1,0 +1,6 @@
+{
+  "name": "Constructease – Build Your Dream Home",
+  "description": "Constructease connects customers with nearby verified construction workers, contractors, quality material suppliers, and interior designers with transparent pricing and quotation comparison.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
