@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Search, MapPin, ArrowRight, ShieldCheck, Check, Sparkles } from 'lucide-react';
+import { Search, MapPin, ArrowRight, ShieldCheck, Check } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
+import heroImage from '../../assets/images/hero_construction_home_1793115490935.jpg';
 
 export const HeroSection: React.FC = () => {
-  const { setActivePage, selectedCity, setSelectedCity, pincode, setPincode, setGlobalSearch } = useApp();
+  const { setActivePage, selectedCity, pincode, setPincode } = useApp();
   const [category, setCategory] = useState('workers');
   const [localPin, setLocalPin] = useState(pincode);
 
@@ -18,9 +19,12 @@ export const HeroSection: React.FC = () => {
       {/* Background Hero Image with Measured Scrim */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/src/assets/images/hero_construction_home_1793115490935.jpg"
+          src={heroImage}
           alt="Modern residential dream home under construction at golden hour"
-          referrerPolicy="no-referrer"
+          onError={(e) => {
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = '/images/hero_construction_home.jpg';
+          }}
           className="w-full h-full object-cover object-center scale-102 transition-transform duration-700 ease-out"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0D1E35]/95 via-[#0D1E35]/85 to-[#0D1E35]/40" />

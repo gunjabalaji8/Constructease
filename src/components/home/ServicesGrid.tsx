@@ -1,6 +1,10 @@
 import React from 'react';
 import { ArrowRight, Wrench, Package, Building, Palette } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
+import workersImg from '../../assets/images/category_workers_1793115492105.jpg';
+import materialsImg from '../../assets/images/category_materials_1793115491600.jpg';
+import contractorsImg from '../../assets/images/category_contractors_1793115493061.jpg';
+import interiorsImg from '../../assets/images/category_interiors_1793115493041.jpg';
 
 export const ServicesGrid: React.FC = () => {
   const { setActivePage } = useApp();
@@ -11,7 +15,8 @@ export const ServicesGrid: React.FC = () => {
       title: 'Find Construction Workers',
       subtitle: 'Masons, Electricians, Plumbers, Carpenters & Laborers',
       description: 'Book verified skilled labor on clear daily or hourly terms. Compare past job track records, specialty skills, and immediate availability near your site.',
-      image: '/src/assets/images/category_workers_1793115492105.jpg',
+      image: workersImg,
+      fallbackImage: '/images/category_workers.jpg',
       icon: <Wrench className="w-5 h-5 text-[#F28C28]" />,
       cta: 'Browse Skilled Workers',
       features: ['Daily / hourly transparent rates', 'Skill-tagged profiles', 'Direct booking & tracking']
@@ -21,7 +26,8 @@ export const ServicesGrid: React.FC = () => {
       title: 'Construction Materials Depot',
       subtitle: 'Cement, Steel Rebars, Bricks, Sand, Tiles & Paints',
       description: 'Source tested building supplies directly from certified local stockists. Compare grades (PPC vs OPC 53, Fe 550D TMT), check minimum loads, and request bulk discounts.',
-      image: '/src/assets/images/category_materials_1793115491600.jpg',
+      image: materialsImg,
+      fallbackImage: '/images/category_materials.jpg',
       icon: <Package className="w-5 h-5 text-[#F28C28]" />,
       cta: 'Compare & Order Materials',
       features: ['Depot direct pricing', 'Multi-supplier spec compare', 'Disclosed freight charges']
@@ -31,7 +37,8 @@ export const ServicesGrid: React.FC = () => {
       title: 'Contractors & Building Services',
       subtitle: 'Turnkey Residential, Renovation & Structural Builders',
       description: 'Partner with licensed general contractors for villa constructions and vertical expansions. Inspect past completed project portfolios and request preliminary site audits.',
-      image: '/src/assets/images/category_contractors_1793115493061.jpg',
+      image: contractorsImg,
+      fallbackImage: '/images/category_contractors.jpg',
       icon: <Building className="w-5 h-5 text-[#F28C28]" />,
       cta: 'View Licensed Contractors',
       features: ['A-Class licensed engineers', 'Transparent milestone estimates', 'Site inspection booking']
@@ -41,7 +48,8 @@ export const ServicesGrid: React.FC = () => {
       title: 'Architectural Interior Design',
       subtitle: 'Modular Kitchens, Living Areas, False Ceilings & Lighting',
       description: 'Transform raw brick structures into magazine-worthy living spaces. Explore curated interior portfolios, calculate room-by-room estimates, and book design consultations.',
-      image: '/src/assets/images/category_interiors_1793115493041.jpg',
+      image: interiorsImg,
+      fallbackImage: '/images/category_interiors.jpg',
       icon: <Palette className="w-5 h-5 text-[#F28C28]" />,
       cta: 'Explore Interior Portfolios',
       features: ['Japandi, Modern & Traditional', 'Custom 3D layout options', 'Transparent consultation fees']
@@ -73,7 +81,10 @@ export const ServicesGrid: React.FC = () => {
                 <img
                   src={s.image}
                   alt={s.title}
-                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = s.fallbackImage;
+                  }}
                   className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500 ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent" />
